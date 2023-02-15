@@ -1,0 +1,38 @@
+<!Doctype html>
+<html>
+<head>
+
+</head>
+<body>
+<h1>Registration Page</h1>
+<form action="student.php" method="post" id="form">
+<table>
+	<tr>
+		<td>First Name:</td>
+		<td><input type="text" name="fName" required/></td>
+	</tr>
+	<tr>
+		<td>Last Name:</td>
+		<td><input type="text" name="lName" required/></td>
+	</tr>
+	<tr>
+		<td>eMail:</td>
+		<td><input type="email" name="eEmail" required/></td>
+	</tr>
+	<tr>
+		<td>Select a Username:</td>
+		<td><input type="text" name="uName" required/></td>
+	</tr>
+	<tr>
+		<td>Select a Password:</td>
+		<td><input type="password" name="pw" required/></td>
+	</tr>
+	<tr>
+		<td><button type="submit" form="form" name="submit">Submit</button></td>
+		<td><button type="submit" form="form" name="clear">Reset</button></td>
+	</tr>
+</table>
+</form>
+<br>
+</body>
+</html>

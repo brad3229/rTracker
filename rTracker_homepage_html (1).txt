@@ -1,0 +1,62 @@
+<!Doctype html>
+<html>
+<head>
+    <title> rTracker</title>
+    <style>
+        h1{
+            text-align: center;
+        }
+        hr.new4{
+            border: 1px solid red;
+            
+        }
+        .button {
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  font-size: 20px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.button{
+    display:inline-flex;
+    height: 25px;
+    padding: 0;
+    background: #009578;
+    border: none;
+    outline: none;
+}
+.button__icon{
+    display: inline-flex;
+    align-items: center;
+    padding: 0 24px;
+    color: black;
+
+}
+.button1 {background-color:#009578 ;} /* Green */
+.button2 {background-color: #009578;} /* Green */
+    </style>
+    
+
+</head>
+<body style="background-color: powderblue;">
+    
+<h1> Welcome to rTracker</h1>
+
+<button type="button" class="button">
+    <span class="button__text"> </span>
+    <span class="button__icon">
+    <ion-icon name="person-circle-outline"></ion-icon>
+    </span>
+</button>
+
+<hr size="2" width="100%" color="green">
+<button class="button button1">Create +</button>
+<button class="button button2">View +</button>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

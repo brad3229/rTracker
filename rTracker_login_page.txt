@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+ <head>
+<style>
+    h1{
+        text-align: center;
+    }
+    
+</style>
+<meta charset="UTF-8">
+<title> rTracker login Page </title>
+</head>
+ <body>
+    <h1> rTracker</h1>
+    <img src="uncp old main.jpg">
+<form action ="checkPW.php" method="post">
+    <table>
+<tr> <td> User name: </td> 
+    <td> <input name= "uName" type="text" required> </td> </tr>
+                <tr> <td> Password :  </td>
+         <td> <input name="pw" type="password" required> </td> </tr>
+<tr>  <td> <input type = "submit">  </td> 
+          <td> <input type="reset"> </td> </tr>
+</table>
+                   </form>
+                   <hr/>
+    <p> Click <a href="longin.html">here</a> to register</p>
+ </body>
+ </html>
