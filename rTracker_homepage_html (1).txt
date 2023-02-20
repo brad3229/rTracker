@@ -31,7 +31,7 @@
 }
 .button__icon{
     display: inline-flex;
-    align-items: center;
+    align-items: right;
     padding: 0 24px;
     color: black;
 
