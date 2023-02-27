@@ -1,38 +1,39 @@
-<!Doctype html>
+<?php include('server.php') ?>
+<!DOCTYPE html>
 <html>
 <head>
-
+  <title>Registration system PHP and MySQL</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<h1>Registration Page</h1>
-<form action="student.php" method="post" id="form">
-<table>
-	<tr>
-		<td>First Name:</td>
-		<td><input type="text" name="fName" required/></td>
-	</tr>
-	<tr>
-		<td>Last Name:</td>
-		<td><input type="text" name="lName" required/></td>
-	</tr>
-	<tr>
-		<td>eMail:</td>
-		<td><input type="email" name="eEmail" required/></td>
-	</tr>
-	<tr>
-		<td>Select a Username:</td>
-		<td><input type="text" name="uName" required/></td>
-	</tr>
-	<tr>
-		<td>Select a Password:</td>
-		<td><input type="password" name="pw" required/></td>
-	</tr>
-	<tr>
-		<td><button type="submit" form="form" name="submit">Submit</button></td>
-		<td><button type="submit" form="form" name="clear">Reset</button></td>
-	</tr>
-</table>
-</form>
-<br>
+  <div class="header">
+  	<h2>Register</h2>
+  </div>
+	
+  <form method="post" action="register.php">
+  	<?php include('erros.php'); ?>
+  	<div class="input-group">
+  	  <label>Username</label>
+  	  <input type="text" name="username" value="<?php echo $username; ?>">
+  	</div>
+  	<div class="input-group">
+  	  <label>Email</label>
+  	  <input type="email" name="email" value="<?php echo $email; ?>">
+  	</div>
+  	<div class="input-group">
+  	  <label>Password</label>
+  	  <input type="password" name="password_1">
+  	</div>
+  	<div class="input-group">
+  	  <label>Confirm password</label>
+  	  <input type="password" name="password_2">
+  	</div>
+  	<div class="input-group">
+  	  <button type="submit" class="btn" name="reg_user">Register</button>
+  	</div>
+  	<p>
+  		Already a member? <a href="login.php">Sign in</a>
+  	</p>
+  </form>
 </body>
 </html>
