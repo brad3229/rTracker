@@ -7,7 +7,7 @@ $email    = "";
 $errors = array(); 
 
 // connect to the database
-$db = mysqli_connect('localhost', 'root', '', 'rTracker');
+$db = mysqli_connect('localhost', 'root', '', 'project');
 
 // REGISTER USER
 if (isset($_POST['reg_user'])) {
