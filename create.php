@@ -21,7 +21,7 @@
  <html>  
  <head>  
       <meta charset="utf-8">  
-      <title>rTracker Create Page</title>  
+      <title>rTracker Create</title>  
       <style type="text/css"> 
            *{  
                 padding: 0;  
@@ -77,7 +77,7 @@
            }  
 
            @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
-*{
+          *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -284,6 +284,25 @@ html,body{
     xhr.send('insert=true&CompanyName=' + companyName + '&CompanyEmail=' + companyEmail + '&Item=' + item + '&ExpDate=' + expDate + '&Message=' + message);
 
     var body = 'Company: ' + companyName + '<br/> Company email: ' + companyEmail + '<br/> Item: ' + item + '<br/> Warranty expiration date: ' + expDate + '<br/> Description: ' + message;
+
+    // Get the current date
+    var currentDate = new Date();
+    // Convert the expiration date to a Date object
+    var expirationDate = new Date(expDate);
+    // Calculate the difference between the expiration date and the current date in days
+    var timeDiff = Math.abs(expirationDate.getTime() - currentDate.getTime());
+    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    // Send a notification email if the expiration date is within 7 days
+    if (diffDays <= 7) {
+      var notificationBody = 'Your warranty for ' + item + ' will expire in ' + diffDays + ' days.';
+      Email.send({
+        SecureToken: "cf3a0db1-54fa-4297-bc06-43bf634b6ddf",
+        To: companyEmail,
+        From: "brad3229@gmail.com",
+        Subject: 'Warranty Expiration Notification',
+        Body: notificationBody
+      });
+    }
 
     Email.send({
       SecureToken: "cf3a0db1-54fa-4297-bc06-43bf634b6ddf",
