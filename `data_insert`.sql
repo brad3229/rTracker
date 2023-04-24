@@ -5,5 +5,5 @@ CREATE TABLE `data_insert` (
   `Item` varchar(30) NOT NULL,
   `ExpDate` varchar(30) NOT NULL,
   `Message` varchar(100) NOT NULL,
-  `image` varchar(200) NOT NULL.
+  `image` varchar(200) NOT NULL
  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
