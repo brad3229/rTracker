@@ -175,6 +175,7 @@ html,body{
                 <th>Item</th>  
                 <th>ExpDate</th>
                 <th>Description</th>
+                <th>Image</th>
            </tr>  
            <?php   
                 if ($num>0) {  
@@ -186,7 +187,8 @@ html,body{
                                <td>".$data['CompanyEmail']."</td>  
                                <td>".$data['Item']."</td> 
                                <td>".$data['ExpDate']."</td>
-                               <td>".$data['Message']."</td> 
+                               <td>".$data['Message']."</td>
+                               <td>".$data['image']."</td>
                                </tr>  
                           ";  
                      }  
