@@ -42,18 +42,18 @@ body {
   background-color: #fff;
   color: #333;
 }
-
 /* Styles for dark mode */
 body.dark-mode {
   background-color: #333;
   color: #fff;
 }
+
  </style>
 <!DOCTYPE html>
 <html>
 <head>
 <!--- Dark mode button --->
-<button id="dark-mode-toggle" class="button">Toggle Dark Mode</button><!--- Dark mode button --->
+<button id="dark-mode-toggle" class="button">Toggle Dark Mode</button>
 	<title>rTracker Home</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
