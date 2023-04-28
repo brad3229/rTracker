@@ -15,7 +15,7 @@
  <html>  
  <head>  
       <meta charset="utf-8">  
-      <title>How to Select Data from Database in PHP & Display in Table Format</title>  
+      <title>rTracker View</title>  
       <style type="text/css">  
            *{  
                 padding: 0;  
@@ -64,6 +64,7 @@
                 margin: 4px 2px;
                 cursor: pointer;
                 font-family: Arial;
+                
            }  
            *{
   margin: 0;
@@ -163,17 +164,20 @@ html,body{
   cursor: pointer;
   background: linear-gradient(135deg,#3a8ffe 0%,#9658fe 100%);
 }
+.img{
+     width: 100px;
+}
       </style>  
  </head>  
  <body>  
  <div class="container">  
       <table border="1">  
            <tr>  
-                <th>ID</th>  
-                <th>CompanyName</th>  
-                <th>CompanyEmail</th>  
+                <th>Reciept ID</th>  
+                <th>Company Name</th>  
+                <th>Company Email</th>  
                 <th>Item</th>  
-                <th>ExpDate</th>
+                <th>Expiration Date</th>
                 <th>Description</th>
                 <th>Image</th>
            </tr>  
@@ -187,16 +191,17 @@ html,body{
                                <td>".$data['CompanyEmail']."</td>  
                                <td>".$data['Item']."</td> 
                                <td>".$data['ExpDate']."</td>
-                               <td>".$data['Message']."</td>
-                               <td>".$data['image']."</td>
+                               <td>".$data['Message']."</td> 
+                               <td><img class='img' src='".$data['image']."'></td>
                                </tr>  
                           ";  
                      }  
                 }  
            ?>  
       </table>  
-      <a href="index.php" id="custom-btn" class="button">Home</a>
+      <a href="index.php" id="custom-btn" class="button">Home</a> 
       <a href="create.php" id="custom-btn" class="button">Create</a>
+
  </div>  
  </body>  
  </html>
