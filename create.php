@@ -1,22 +1,50 @@
-<?php   
- //create.php  
- $conn=mysqli_connect('localhost','root','','project') or die();  
- $msg="";  
- if (isset($_POST['insert'])) {  
-      $CompanyName=$_POST['CompanyName'];  
-      $CompanyEmail=$_POST['CompanyEmail'];  
-      $Item=$_POST['Item'];
-      $ExpDate=$_POST['ExpDate'];
-      $Message=$_POST['Message'];  
-      $query= "INSERT INTO `data_insert`(`CompanyName`, `CompanyEmail`, `Item`, `ExpDate`, `Message` ) VALUES ('$CompanyName','$CompanyEmail','$Item', '$ExpDate', '$Message')";  
-      $data=mysqli_query($conn,$query);  
-      if ($data) {  
-           $msg="Your data inserted successfully";  
-      }else{  
-           $msg="Try after some time !";  
-      }  
- }  
- ?>  
+ <?php   
+$conn = mysqli_connect('localhost', 'root', '', 'project') or die();  
+$msg = "  ";
+
+if (isset($_POST['insert'])) {  
+    $CompanyName = $_POST['CompanyName'];  
+    $CompanyEmail = $_POST['CompanyEmail'];  
+    $Item = $_POST['Item'];
+    $ExpDate = $_POST['ExpDate'];
+    $Message = $_POST['Message'];
+    // Validate that the image is not empty
+    if (!empty($_FILES['image']['name'])) {
+        $target_dir = "images/";
+        $target_file = $target_dir . basename($_FILES['image']['name']);
+        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+        // Check if image file is a actual image or fake image
+        $check = getimagesize($_FILES['image']['tmp_name']);
+        
+        if($check !== false) {
+            // Check if file already exists
+            if (file_exists($target_file)) {
+                $msg = "Sorry, file already exists.";
+            } else {
+                // Upload image file to the images folder
+                if (move_uploaded_file($_FILES['image']['tmp_name'], $target_file)) {
+                    // Insert data to the database table
+                    $query = "INSERT INTO `data_insert`(`CompanyName`, `CompanyEmail`, `Item`, `ExpDate`, `Message`, `image`) VALUES ('$CompanyName','$CompanyEmail','$Item', '$ExpDate', '$Message', '$target_file')";
+                    $data = mysqli_query($conn, $query);
+                    if ($data) {
+                        $msg = "Your data inserted successfully";
+                    } else {
+                        $msg = "Try after some time !";
+                    }
+                } else {
+                    $msg = "Sorry, there was an error uploading your file.";
+                }
+            }
+        } else {
+            $msg = "File is not an image.";
+        }
+    } else {
+        $msg = "Please select an image.";
+    }
+}
+ 
+?>  
 <!DOCTYPE html>  
  <html>  
  <head>  
@@ -74,7 +102,7 @@
                 margin: 4px 2px;
                 cursor: pointer;
                 font-family: Arial;
-           }  
+           } 
 
            @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
           *{
@@ -181,7 +209,10 @@ html,body{
  <body>  
  <div class="container">  
       <h1>Insert Receipt Data</h1>  
-      <form method="post" action="create.php">  
+      <div>
+        <?php echo $msg; ?>
+      </div>
+      <form method="post" action="create.php" >
            <input type="text" name="CompanyName" placeholder="Enter Company Name" required>  
            <input type="email" name="CompanyEmail" placeholder="Enter Company Email" required>  
            <input type="text" name="Item" placeholder="Enter Item" required>
@@ -208,7 +239,7 @@ html,body{
                File name here
             </div>
          </div>
-         <button onclick="defaultBtnActive()" id="custom-btn">Choose a file</button>
+         <button type="button" onclick="defaultBtnActive()" id="custom-btn">Choose a file</button>
          <input id="default-btn" type="file" hidden>
       </div>
       <br/>
@@ -218,6 +249,7 @@ html,body{
       <input type="submit" name="insert" value="Insert Data" class="btn" id="submitBtn">
       <a href="index.php" id="custom-btn" class="button">Home</a>
       <a href="view.php" id="custom-btn" class="button">View</a>
+
       <script>
          const wrapper = document.querySelector(".wrapper");
          const fileName = document.querySelector(".file-name");
@@ -250,8 +282,7 @@ html,body{
            }
          });
       </script> <!--- end of nepal code--->
-           <?php echo $msg = '';
-           ?>  
+            
 
 
       </form>  
@@ -263,6 +294,7 @@ html,body{
  <!--- Send email to user and save what they input to the view.php file--->
  <script src="https://smtpjs.com/v3/smtp.js">
 </script>
+
 <script>
   var submitBtn = document.getElementById('submitBtn');
   submitBtn.addEventListener('click', function(e) {
@@ -272,16 +304,27 @@ html,body{
     var item = document.getElementsByName('Item')[0].value;
     var expDate = document.getElementsByName('ExpDate')[0].value;
     var message = document.getElementsByName('Message')[0].value;
+    
+    var fileInput = document.getElementById('default-btn');
+    var file = fileInput.files[0];
 
+    var formData = new FormData();
+    formData.append('insert', 'true');
+    formData.append('CompanyName', companyName);
+    formData.append('CompanyEmail', companyEmail);
+    formData.append('Item', item);
+    formData.append('ExpDate', expDate);
+    formData.append('Message', message);
+    formData.append('image', file);
+    
     var xhr = new XMLHttpRequest();
     xhr.open('POST', 'create.php', true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onreadystatechange = function() {
       if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
         console.log(this.responseText);
       }
     };
-    xhr.send('insert=true&CompanyName=' + companyName + '&CompanyEmail=' + companyEmail + '&Item=' + item + '&ExpDate=' + expDate + '&Message=' + message);
+    xhr.send(formData);
 
     var body = 'Company: ' + companyName + '<br/> Company email: ' + companyEmail + '<br/> Item: ' + item + '<br/> Warranty expiration date: ' + expDate + '<br/> Description: ' + message;
 
@@ -315,4 +358,5 @@ html,body{
     );
   });
 </script>
+
  </html>
