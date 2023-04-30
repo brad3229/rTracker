@@ -22,6 +22,7 @@
   text-decoration: none;
   font-size: 20px;
   margin: 4px 2px;
+  border-radius: 30px;
   cursor: pointer;
   font-family: Arial;
 }
@@ -31,6 +32,7 @@
   border: none;
   color: white;
   padding: 10px 20px;
+  border-radius: 30px;
   text-align: center;
   text-decoration: none;
   font-size: 20px;
@@ -41,10 +43,42 @@
 body {
   background-color: #fff;
   color: #333;
+  font-family: Arial;
+}
+.wrapper{ 
+  display: flex;
+  justify-content: space-between;
+  width: 1200px;
+  margin: 2rem auto;
+  flex-wrap: wrap;
+}
+.box{
+  display: inline-block;
+  margin: 20px;
+  width: 200px;
+  height: 170px;
+  text-align: center;
+  background-color: #3a8ffe;
+  padding: 1.5rem;
+  border-radius: 30px;
+}
+.box:hover{
+  transition: 0.5s ease-in-out;
+  background-color: lightcoral;
+  color: white;
+}
+.box img{
+  width: 100px;
+  background-color: white;
+  border-radius: 50%;
+}
+.box img:hover{
+  transform: scale(1.1);
+  box-shadow: 0px 0px 15px white;
 }
 /* Styles for dark mode */
 body.dark-mode {
-  background-color: #333;
+  background-color: #262626;
   color: #fff;
 }
 
@@ -79,9 +113,15 @@ body.dark-mode {
     <!-- logged in user information -->
     <?php  if (isset($_SESSION['username'])) : ?>
     	<p>Welcome <strong><?php echo $_SESSION['username']; ?></strong></p>
-		<a href="create.php" class="button">Create</a>
-		<a href="view.php" class="button">View</a>
-    	<p><br/><br/> <a href="index.php?logout='1'" class="logout">logout</a> </p>
+      <div class="box">
+        <a href="create.php">
+        <img src="images/createreceipte.png" alt="">
+    </div>
+    <div class="box">
+      <a href="view.php">
+        <img src="images/view.png" alt="">
+    </div>
+    	<p><br/><br/> <a href="index.php?logout='1'" class="logout">Logout</a> </p>
     <?php endif ?>
 </div>
 <script>
