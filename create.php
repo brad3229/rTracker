@@ -1,4 +1,4 @@
- <?php   
+  <?php   
 $conn = mysqli_connect('localhost', 'root', '', 'project') or die();  
 $msg = "  ";
 
@@ -191,7 +191,7 @@ html,body{
   margin-top: 30px;
   display: block;
   width: 100%;
-  height: 50px;
+  height: 40px;
   border: none;
   outline: none;
   border-radius: 25px;
