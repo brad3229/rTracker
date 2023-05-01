@@ -55,8 +55,8 @@ body {
 .box{
   display: inline-block;
   margin: 20px;
-  width: 200px;
-  height: 170px;
+  width: 300px;
+  height: 250px;
   text-align: center;
   background-color: #3a8ffe;
   padding: 1.5rem;
@@ -75,6 +75,10 @@ body {
 .box img:hover{
   transform: scale(1.1);
   box-shadow: 0px 0px 15px white;
+}
+.box p {
+  color: white;
+  font-weight: bold;
 }
 /* Styles for dark mode */
 body.dark-mode {
@@ -114,12 +118,22 @@ body.dark-mode {
     <?php  if (isset($_SESSION['username'])) : ?>
     	<p>Welcome <strong><?php echo $_SESSION['username']; ?></strong></p>
       <div class="box">
-        <a href="create.php">
+        <a href="create.php" style="text-decoration: none;">
         <img src="images/createreceipte.png" alt="">
+        <P>
+          <br>
+          <br>
+          Track a new receipt!
+    </p>
     </div>
     <div class="box">
-      <a href="view.php">
-        <img src="images/view.png" alt="">
+      <a href="view.php" style="text-decoration: none;">
+        <img src="images/view1.png" alt="">
+        <p>
+          <br>
+          <br>
+          View your history!
+    </p>
     </div>
     	<p><br/><br/> <a href="index.php?logout='1'" class="logout">Logout</a> </p>
     <?php endif ?>
